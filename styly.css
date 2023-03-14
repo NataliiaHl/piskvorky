@@ -7,3 +7,17 @@ body {
   background-attachment: fixed;
 }
 
+.game {
+    background-color: #283e50;  
+    width: 500px;
+    position: relative;
+    top: 100px;
+    left: calc(50% - 250px);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.photo {
+   width: 500px;
+}
