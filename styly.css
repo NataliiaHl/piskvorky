@@ -24,6 +24,7 @@ body {
  }
 
 .description {
+    font-family: sans-serif;
     background-color: #283e50;
     padding: 0 20px 10px 20px; 
 }
@@ -34,7 +35,7 @@ h1 {
 }
 
 p {
-    font-size: 18px;
+    font-size: 15px;
     line-height: 1.5;
 }
 
