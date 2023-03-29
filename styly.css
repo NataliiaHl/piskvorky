@@ -64,3 +64,31 @@ p {
 .start:hover {
     background-color: #0090e9;
 }
+
+
+/* Druhá část - hra.html */ 
+
+.play {
+    max-width: 80vmin;
+    display: flex;
+    flex-direction: column;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.title {
+    color: #ffffff;
+    font-family: 'Lobster';
+    font-weight: lighter;
+    font-size: 48px;
+    text-align: center;
+    margin: 5px 0;
+}
+
+.player_title {
+    color: #ffffff;
+    font-size: 20px;
+    font-family: sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+}
