@@ -112,3 +112,29 @@ p {
     align-self: center;
     margin-left: 0.5rem;
 }
+
+
+.menu_buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.menu_button_home {
+    background-color: #1fcca4;
+    border-radius: 3px;
+    padding: 7px;
+}
+
+.menu_button_home:hover {
+    background-color: #1cbb96
+}
+
+.menu_button_restart {
+    background-color: #0197f6;
+    border-radius: 3px;
+    padding: 7px;
+}
+
+.menu_button_restart:hover {
+    background-color: #0090e9;
+}
