@@ -93,6 +93,8 @@ p {
 
 .player {
     display: flex;
+    align-items: center;
+    position: relative;
 }
 
 .player_title {
@@ -113,6 +115,23 @@ p {
     margin-left: 0.5rem;
 }
 
+.cross:before,
+.cross:after {
+    content: "";
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin-left: 0.5rem;
+}
+
+.cross:before {
+    transform: rotate(45deg);
+}
+
+.cross:after {
+    transform: rotate(-45deg);
+}
 
 .menu_buttons {
     display: flex;
@@ -147,14 +166,17 @@ p {
 .game_button {
     flex: 0 0 10%;
     border: 1px solid black;
-    opacity: 50%;
+    background: rgba(255, 255, 255, 0.5);
     cursor: pointer;
     padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
 .game_button:after {
     content: '';
-    display:block;
     padding-top: 100%;
 }
 
@@ -166,4 +188,30 @@ p {
 .game_button:focus {
     background-color: white;
     opacity: 70%;
+}
+
+.game_field--circle {
+    height: 80%;
+    width: 80%;
+    border-radius: 60%;
+    border: 3px solid;
+}
+
+
+.game_field--cross:before,
+.game_field--cross:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: black;
+    left: 0;
+}
+
+.game_field--cross:before {
+    transform: rotate(45deg);
+}
+
+.game_field--cross:after {
+    transform: rotate(-45deg);
 }
