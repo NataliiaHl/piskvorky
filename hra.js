@@ -1,6 +1,6 @@
 let currentPlayer = 'circle';
 
-const elements = document.querySelectorAll('.game_button');
+const elements = document.querySelectorAll('.game_button')
 
 const changeSing = (event) => {
     if (currentPlayer === 'circle') {
@@ -16,7 +16,6 @@ const changeSing = (event) => {
     changePlayer()
 };
 const changePlayer = () => {
-   console.log(currentPlayer)
     if (currentPlayer === 'circle') {
         currentPlayer = 'cross'
     } else if (currentPlayer === 'cross') {
@@ -27,5 +26,14 @@ const changePlayer = () => {
 elements.forEach((item) => {
     item.addEventListener('click', changeSing)
 })
+
+const confirmFunction = (event) => {
+   const restart = confirm('Opravdu chceš začít znovu?')
+   if (restart === false) {
+    event.preventDefault()
+   }
+}
+
+document.querySelector('.menu_button_restart').addEventListener('click', confirmFunction)
 
 
