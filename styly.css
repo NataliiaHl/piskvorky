@@ -135,7 +135,7 @@ p {
 
 .menu_buttons {
     display: flex;
-    gap: 10px;
+    gap: 5px;
 }
 
 .menu_button_home {
@@ -197,7 +197,6 @@ p {
     border: 3px solid;
 }
 
-
 .game_field--cross:before,
 .game_field--cross:after {
     content: "";
@@ -214,4 +213,8 @@ p {
 
 .game_field--cross:after {
     transform: rotate(-45deg);
+}
+
+.game_button:disabled {
+    color: unset;
 }
