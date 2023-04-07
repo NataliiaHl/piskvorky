@@ -190,11 +190,19 @@ p {
     opacity: 70%;
 }
 
+
+/* Třetí část - kruh a kříž */
+
 .game_field--circle {
     height: 80%;
     width: 80%;
-    border-radius: 60%;
-    border: 3px solid;
+    border-radius: 50%;
+    border: 4px solid;   
+}
+
+.game_field--cross{
+   width: 100%;
+   height: 4px;
 }
 
 .game_field--cross:before,
@@ -202,7 +210,7 @@ p {
     content: "";
     position: absolute;
     width: 100%;
-    height: 3px;
+    height: 4px;
     background: black;
     left: 0;
 }
@@ -218,3 +226,16 @@ p {
 .game_button:disabled {
     color: unset;
 }
+
+.zoom-in {
+    animation: zoom-in 0.15s;
+  }
+  
+  @keyframes zoom-in{
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
