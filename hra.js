@@ -1,6 +1,10 @@
+import { findWinner } from 'https://unpkg.com/piskvorky@0.1.4'
+
 let currentPlayer = 'circle';
 
 const elements = document.querySelectorAll('.game_button')
+
+const signs = document.querySelectorAll('.game_button span')
 
 const changeSing = (event) => {
     if (currentPlayer === 'circle') {
@@ -14,7 +18,9 @@ const changeSing = (event) => {
     }
     event.target.disabled = true;
     changePlayer()
+    signsBox()
 };
+
 const changePlayer = () => {
     if (currentPlayer === 'circle') {
         currentPlayer = 'cross'
@@ -23,10 +29,40 @@ const changePlayer = () => {
     }
 }
 
+const signsBox = () => {
+    const gameArray = Array.from(signs).map((sign) => {
+        if (sign.classList.contains('game_field--circle')) {
+            return 'o'
+        } else if (sign.classList.contains('game_field--cross')) {
+            return 'x'
+        } 
+        
+        return '_'
+    })
+
+    const winner = findWinner(gameArray)
+
+    if (winner === 'x') {
+        setTimeout(() => {
+          alert('Vyhrál křížek!')
+          location.reload()
+        }, 200)
+    } else if (winner === 'o') {
+        setTimeout(() => {
+          alert('Vyhrálo kolečko!')
+          location.reload()
+        }, 200)
+    } else if (winner === 'tie') {
+        setTimeout(() => {
+          alert('Hra skončila nerozhodně.')
+          location.reload()
+        }, 200);
+    }
+}
+
 elements.forEach((item) => {
     item.addEventListener('click', changeSing)
 })
-
 
 const confirmFunction = (event) => {
    const restart = confirm('Opravdu chceš začít znovu?')
@@ -35,5 +71,9 @@ const confirmFunction = (event) => {
    }
 }
 document.querySelector('.menu_button_restart').addEventListener('click', confirmFunction)
+
+
+
+
 
 
