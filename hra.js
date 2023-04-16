@@ -43,14 +43,20 @@ const signsBox = () => {
     const winner = findWinner(gameArray)
 
     if (winner === 'x') {
+        setTimeout(() => {
           alert('Vyhrál křížek!')
           location.reload()
+        }, 200)
     } else if (winner === 'o') {
+        setTimeout(() => {
           alert('Vyhrálo kolečko!')
           location.reload()
+        }, 200)
     } else if (winner === 'tie') {
+        setTimeout(() => {
           alert('Hra skončila nerozhodně.')
           location.reload() 
+        }, 200)
     }
 }
 
