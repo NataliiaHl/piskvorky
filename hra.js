@@ -18,7 +18,12 @@ const gameArray = () => {
     })
 } 
 
+const disableAllFields = () => {
+    fields.forEach(field => field.disabled = true);
+  }
+
 const crossMove = () => {
+    disableAllFields()
 
     if (currentPlayer = 'cross') {
    
