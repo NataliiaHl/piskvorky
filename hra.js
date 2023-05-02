@@ -2,7 +2,7 @@ import { findWinner } from 'https://unpkg.com/piskvorky@0.1.4'
 
 let currentPlayer = 'circle';
 
-const elements = document.querySelectorAll('.game_button')
+const fields = document.querySelectorAll('.game_button')
 
 const signs = document.querySelectorAll('.game_button span')
 
@@ -18,12 +18,36 @@ const gameArray = () => {
     })
 } 
 
+const crossMove = () => {
+
+    if (currentPlayer = 'cross') {
+   
+        fetch('https://piskvorky.czechitas-podklady.cz/api/suggest-next-move', {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify({
+                board: gameArray(),
+                player: 'x', 
+            }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                const { x, y } = data.position 
+                const index = x + y * 10
+                fields[index].click();
+            })
+        } 
+}
+
 const changeSing = (event) => {
     if (currentPlayer === 'circle') {
         currentPlayer = 'cross'
         event.target.querySelector('span').classList.add('game_field--circle', 'zoom-in')
         document.querySelector('.player span').classList.add('cross')
         document.querySelector('.player span').classList.remove('circle')
+        crossMove()
     } else if (currentPlayer === 'cross') {
         currentPlayer = 'circle'
         event.target.querySelector('span').classList.add('game_field--cross', 'zoom-in')
@@ -56,8 +80,8 @@ const myFindWinnerFunction = () => {
     }
 }
 
-elements.forEach((item) => {
-    item.addEventListener('click', changeSing)
+fields.forEach((field) => {
+    field.addEventListener('click', changeSing)
 })
 
 const confirmFunction = (event) => {
