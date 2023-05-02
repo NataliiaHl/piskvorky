@@ -24,52 +24,56 @@ const disableAllFields = () => {
 
 const enableEmptyFields = () => {
     fields.forEach(field => {
-        if (!field.querySelector('span').classList.contains('game_field--circle')
-        && !field.querySelector('span').classList.contains('game_field--cross')) {
-
-            field.disabled = false
-        }
+        field.disabled = field.querySelector('span').classList.contains('game_field--circle')
+        || field.querySelector('span').classList.contains('game_field--cross')
     })
 }
 
 const crossMove = () => {
     disableAllFields()
 
-    if (currentPlayer = 'cross') {
+    currentPlayer = 'cross'
    
-        fetch('https://piskvorky.czechitas-podklady.cz/api/suggest-next-move', {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json',
-            },
-            body: JSON.stringify({
-                board: gameArray(),
-                player: 'x', 
+    fetch('https://piskvorky.czechitas-podklady.cz/api/suggest-next-move', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json',
+        },
+        body: JSON.stringify({
+            board: gameArray(),
+            player: 'x', 
             }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                enableEmptyFields()
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            enableEmptyFields()
                 const { x, y } = data.position 
                 const index = x + y * 10
-                fields[index].click();
-            })
-        } 
+                fields[index].click()
+                
+
+        })
+        
 }
 
 const changeSing = (event) => {
+    
     if (currentPlayer === 'circle') {
-        currentPlayer = 'cross'
+        
         event.target.querySelector('span').classList.add('game_field--circle', 'zoom-in')
         document.querySelector('.player span').classList.add('cross')
         document.querySelector('.player span').classList.remove('circle')
         crossMove()
+
     } else if (currentPlayer === 'cross') {
+
         currentPlayer = 'circle'
         event.target.querySelector('span').classList.add('game_field--cross', 'zoom-in')
         document.querySelector('.player span').classList.remove('cross')
         document.querySelector('.player span').classList.add('circle')
     }
+
+    event.target.disabled = true
     myFindWinnerFunction()
 };
 
@@ -100,9 +104,11 @@ fields.forEach((field) => {
 })
 
 const confirmFunction = (event) => {
-   const restart = confirm('Opravdu chceš začít znovu?')
-   if (restart === false) {
+   
+   if (!confirm('Opravdu chceš začít znovu?')) {
+
         event.preventDefault()
-   }
+    }
 }
+
 document.querySelector('.menu_button_restart').addEventListener('click', confirmFunction)
