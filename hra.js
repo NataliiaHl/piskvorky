@@ -19,8 +19,18 @@ const gameArray = () => {
 } 
 
 const disableAllFields = () => {
-    fields.forEach(field => field.disabled = true);
-  }
+    fields.forEach(field => field.disabled = true)
+}
+
+const enableEmptyFields = () => {
+    fields.forEach(field => {
+        if (!field.querySelector('span').classList.contains('game_field--circle')
+        && !field.querySelector('span').classList.contains('game_field--cross')) {
+
+            field.disabled = false
+        }
+    })
+}
 
 const crossMove = () => {
     disableAllFields()
@@ -39,6 +49,7 @@ const crossMove = () => {
         })
             .then((response) => response.json())
             .then((data) => {
+                enableEmptyFields()
                 const { x, y } = data.position 
                 const index = x + y * 10
                 fields[index].click();
@@ -59,7 +70,6 @@ const changeSing = (event) => {
         document.querySelector('.player span').classList.remove('cross')
         document.querySelector('.player span').classList.add('circle')
     }
-    event.target.disabled = true;
     myFindWinnerFunction()
 };
 
