@@ -6,31 +6,8 @@ const elements = document.querySelectorAll('.game_button')
 
 const signs = document.querySelectorAll('.game_button span')
 
-const changeSing = (event) => {
-    if (currentPlayer === 'circle') {
-        event.target.querySelector('span').classList.add('game_field--circle', 'zoom-in')
-        document.querySelector('.player span').classList.add('cross')
-        document.querySelector('.player span').classList.remove('circle')
-    } else if (currentPlayer === 'cross') {
-        event.target.querySelector('span').classList.add('game_field--cross', 'zoom-in')
-        document.querySelector('.player span').classList.remove('cross')
-        document.querySelector('.player span').classList.add('circle')
-    }
-    event.target.disabled = true;
-    changePlayer()
-    signsBox()
-};
-
-const changePlayer = () => {
-    if (currentPlayer === 'circle') {
-        currentPlayer = 'cross'
-    } else if (currentPlayer === 'cross') {
-        currentPlayer = 'circle'
-    }
-}
-
-const signsBox = () => {
-    const gameArray = Array.from(signs).map((sign) => {
+const gameArray = () => {
+    return Array.from(signs).map((sign) => {
         if (sign.classList.contains('game_field--circle')) {
             return 'o'
         } else if (sign.classList.contains('game_field--cross')) {
@@ -39,8 +16,27 @@ const signsBox = () => {
         
         return '_'
     })
+} 
 
-    const winner = findWinner(gameArray)
+const changeSing = (event) => {
+    if (currentPlayer === 'circle') {
+        currentPlayer = 'cross'
+        event.target.querySelector('span').classList.add('game_field--circle', 'zoom-in')
+        document.querySelector('.player span').classList.add('cross')
+        document.querySelector('.player span').classList.remove('circle')
+    } else if (currentPlayer === 'cross') {
+        currentPlayer = 'circle'
+        event.target.querySelector('span').classList.add('game_field--cross', 'zoom-in')
+        document.querySelector('.player span').classList.remove('cross')
+        document.querySelector('.player span').classList.add('circle')
+    }
+    event.target.disabled = true;
+    myFindWinnerFunction()
+};
+
+const myFindWinnerFunction = () => {
+
+    const winner = findWinner(gameArray())
 
     if (winner === 'x') {
         setTimeout(() => {
@@ -71,9 +67,3 @@ const confirmFunction = (event) => {
    }
 }
 document.querySelector('.menu_button_restart').addEventListener('click', confirmFunction)
-
-
-
-
-
-
